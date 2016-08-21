@@ -2,6 +2,7 @@ package com.zuihuibao.mq.util;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -25,83 +26,83 @@ import static com.alibaba.fastjson.util.TypeUtils.castToTimestamp;
  * 帮助解析JSONObject
  */
 public class JsonParseHelper {
-  public static Optional<JSONObject> getJSONObject(JSONObject jsonObject, String key) {
-    return Optional.of(jsonObject.getJSONObject(key));
-  }
-
-  public static Optional<JSONArray> getJSONArray(JSONObject jsonObject, String key) {
-    return Optional.of(jsonObject.getJSONArray(key));
-  }
-
-  public static <T> Optional<T> getObject(JSONObject jsonObject, String key, Class<T> clazz) {
-    return Optional.of(jsonObject.getObject(key, clazz));
-  }
-
-  public static Optional<Boolean> getBoolean(JSONObject jsonObject, String key) {
-
-    return Optional.of(castToBoolean(jsonObject.getBoolean(key)));
-  }
-
-  public static Optional<byte[]> getBytes(JSONObject jsonObject, String key) {
-    return Optional.of(castToBytes(jsonObject.getBytes(key)));
-  }
-
-  public static Optional<Byte> getByte(JSONObject jsonObject, String key) {
-
-    return Optional.of(castToByte(jsonObject.getByte(key)));
-  }
-
-  public static Optional<Short> getShort(JSONObject jsonObject, String key) {
-
-    return Optional.of(castToShort(jsonObject.getShort(key)));
-  }
-
-  public static Optional<Integer> getInteger(JSONObject jsonObject, String key) {
-
-    return Optional.of(castToInt(jsonObject.getInteger(key)));
-  }
-
-  public static Optional<Long> getLong(JSONObject jsonObject, String key) {
-
-    return Optional.of(castToLong(jsonObject.getLong(key)));
-  }
-
-  public static Optional<Float> getFloat(JSONObject jsonObject, String key) {
-
-    return Optional.of(castToFloat(jsonObject.getFloat(key)));
-  }
-
-  public static Optional<Double> getDouble(JSONObject jsonObject, String key) {
-
-    return Optional.of(castToDouble(jsonObject.getDouble(key)));
-  }
-
-  public static Optional<BigDecimal> getBigDecimal(JSONObject jsonObject, String key) {
-
-    return Optional.of(castToBigDecimal(jsonObject.getBigDecimal(key)));
-  }
-
-  public static Optional<String> getString(JSONObject jsonObject, String key) {
-    Object value = jsonObject.get(key);
-    String valueString = null;
-    if (null != value) {
-      valueString = value.toString();
+    public static Optional<JSONObject> getJSONObject(JSONObject jsonObject, String key) {
+        return Optional.of(jsonObject.getJSONObject(key));
     }
-    return Optional.ofNullable(valueString);
-  }
 
-  public static Optional<Date> getDate(JSONObject jsonObject, String key) {
+    public static Optional<JSONArray> getJSONArray(JSONObject jsonObject, String key) {
+        return Optional.of(jsonObject.getJSONArray(key));
+    }
 
-    return Optional.of(castToDate(jsonObject.getDate(key)));
-  }
+    public static <T> Optional<T> getObject(JSONObject jsonObject, String key, Class<T> clazz) {
+        return Optional.of(jsonObject.getObject(key, clazz));
+    }
 
-  public static java.util.Optional<java.sql.Date> getSqlDate(JSONObject jsonObject, String key) {
+    public static Optional<Boolean> getBoolean(JSONObject jsonObject, String key) {
 
-    return java.util.Optional.of(castToSqlDate(jsonObject.getSqlDate(key)));
-  }
+        return Optional.of(castToBoolean(jsonObject.getBoolean(key)));
+    }
 
-  public static Optional<Timestamp> getTimestamp(JSONObject jsonObject, String key) {
+    public static Optional<byte[]> getBytes(JSONObject jsonObject, String key) {
+        return Optional.of(castToBytes(jsonObject.getBytes(key)));
+    }
 
-    return Optional.of(castToTimestamp(jsonObject.getTimestamp(key)));
-  }
+    public static Optional<Byte> getByte(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToByte(jsonObject.getByte(key)));
+    }
+
+    public static Optional<Short> getShort(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToShort(jsonObject.getShort(key)));
+    }
+
+    public static Optional<Integer> getInteger(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToInt(jsonObject.getInteger(key)));
+    }
+
+    public static Optional<Long> getLong(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToLong(jsonObject.getLong(key)));
+    }
+
+    public static Optional<Float> getFloat(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToFloat(jsonObject.getFloat(key)));
+    }
+
+    public static Optional<Double> getDouble(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToDouble(jsonObject.getDouble(key)));
+    }
+
+    public static Optional<BigDecimal> getBigDecimal(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToBigDecimal(jsonObject.getBigDecimal(key)));
+    }
+
+    public static Optional<String> getString(JSONObject jsonObject, String key) {
+        Object value = jsonObject.get(key);
+        String valueString = null;
+        if (null != value) {
+            valueString = value.toString();
+        }
+        return Optional.ofNullable(valueString);
+    }
+
+    public static Optional<Date> getDate(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToDate(jsonObject.getDate(key)));
+    }
+
+    public static java.util.Optional<java.sql.Date> getSqlDate(JSONObject jsonObject, String key) {
+
+        return java.util.Optional.of(castToSqlDate(jsonObject.getSqlDate(key)));
+    }
+
+    public static Optional<Timestamp> getTimestamp(JSONObject jsonObject, String key) {
+
+        return Optional.of(castToTimestamp(jsonObject.getTimestamp(key)));
+    }
 }

@@ -39,6 +39,8 @@ public class MqConfig {
   //rabbit mq 服务器配置
   private @Value("${mq.host}") String host;
   private @Value("${mq.port}") String port;
+  private @Value("${mq.username}") String username;
+  private @Value("${mq.password}") String password;
 
   //queue和exchange配置
   private @Value("${mq.queue.name}") String queueName;
@@ -67,7 +69,10 @@ public class MqConfig {
 
   @Bean
   public ConnectionFactory connectionFactory() {
-    return new CachingConnectionFactory(host, Integer.parseInt(port));
+    CachingConnectionFactory connectionFactory = new CachingConnectionFactory(host, Integer.parseInt(port));
+    connectionFactory.setUsername(username);
+    connectionFactory.setPassword(password);
+    return connectionFactory;
   }
 
   @Bean

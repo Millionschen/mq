@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * 测试类 打印出所有接收到的数据
  */
 
-@Component("print")
+@Component("printReceiver")
 public class PrintReceiver extends JsonObjectReceiver<PrintReceiver.PrintReceiverDto> {
   private static Logger logger = LoggerFactory.getLogger(PrintReceiver.class);
 
