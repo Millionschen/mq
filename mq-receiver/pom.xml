@@ -4,30 +4,19 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.zuihibao</groupId>
   <artifactId>mq-receiver</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <properties>
-    <guava.version>19.0</guava.version>
-    <jdk>1.8</jdk>
-    <!--指定Maven用什么编码来读取源码及文档 -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!--指定Maven用什么编码来呈现站点的HTML文件 -->
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <!-- log -->
-    <slf4j.version>1.7.5</slf4j.version>
-    <log4j.version>2.3</log4j.version>
-    <disruptor.version>3.3.2</disruptor.version>
-    <fastjson.version>1.2.7</fastjson.version>
-    <log4j.dir>/app/web/runtime/mq_logs</log4j.dir>
-  </properties>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.0.RELEASE</version>
+    <groupId>com.zuihuibao</groupId>
+    <artifactId>mq-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
+
+  <properties>
+    <log4j.dir>/app/web/runtime/mq_logs</log4j.dir>
+  </properties>
 
   <dependencies>
     <!--spring amqp start-->
@@ -45,65 +34,8 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-configuration-processor</artifactId>
-      <optional>true</optional>
-    </dependency>
+
     <!--spring amqp end-->
-
-    <!--common start-->
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>${guava.version}</version>
-    </dependency>
-    <!--common end-->
-
-    <!--log start-->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-web</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.lmax</groupId>
-      <artifactId>disruptor</artifactId>
-      <version>${disruptor.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-jcl</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
-    <!--log end-->
-
-    <!-- json -->
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
-      <version>${fastjson.version}</version>
-    </dependency>
 
     <!--com.zuihuibao start-->
     <dependency>
@@ -207,19 +139,4 @@
       </build>
     </profile>
   </profiles>
-
-  <repositories>
-    <repository>
-      <id>zuihuibao</id>
-      <url>http://121.41.112.26:8083/nexus/content/groups/public</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
-    </repository>
-  </repositories>
-
 </project>

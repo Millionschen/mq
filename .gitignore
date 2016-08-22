@@ -1,5 +1,6 @@
 .idea
 mq-base/target
 mq-base/mq-base.iml
+mq-parent/mq-parent.iml
 mq-receiver/target
 mq-receiver/mq-receiver.iml
