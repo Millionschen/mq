@@ -12,6 +12,7 @@
     <groupId>com.zuihuibao</groupId>
     <artifactId>mq-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <relativePath>../mq-parent</relativePath>
   </parent>
 
   <properties>

@@ -17,6 +17,7 @@
 
   <modules>
     <module>../mq-receiver</module>
+    <module>../web-db</module>
   </modules>
 
   <properties>
