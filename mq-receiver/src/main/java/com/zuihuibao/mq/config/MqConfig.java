@@ -63,7 +63,7 @@ public class MqConfig {
         new PropertySourcesPlaceholderConfigurer();
     propertyConfigurer.setLocations(
         new PathMatchingResourcePatternResolver()
-            .getResources("classpath:config/**/*.properties"));
+            .getResources("classpath:config/**/mq.properties"));
     return propertyConfigurer;
   }
 
