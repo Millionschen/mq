@@ -35,6 +35,7 @@
       <arg column="auth_realname" jdbcType="VARCHAR" javaType="java.lang.String"/>
     </constructor>
   </resultMap>
+
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbggenerated
