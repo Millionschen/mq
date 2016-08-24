@@ -2,9 +2,14 @@ package com.zuihuibao.mq.dispatch.receiver;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zuihuibao.mq.util.JsonParseHelper;
+import com.zuihuibao.web.dao.UserInfoMapper;
+import com.zuihuibao.web.model.UserInfo;
+import com.zuihuibao.web.model.UserInfoExample;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,6 +21,9 @@ import org.springframework.stereotype.Component;
 public class PrintReceiver extends JsonObjectReceiver<PrintReceiver.PrintReceiverDto> {
   private static Logger logger = LoggerFactory.getLogger(PrintReceiver.class);
 
+  @Autowired
+  private UserInfoMapper userInfoMapper;
+
   @Override protected Optional<PrintReceiver.PrintReceiverDto> parse(JSONObject jsonObject) {
     Optional<String> stringOptional = JsonParseHelper.getString(jsonObject, "data");
     if (stringOptional.isPresent()) {
@@ -25,6 +33,12 @@ public class PrintReceiver extends JsonObjectReceiver<PrintReceiver.PrintReceive
   }
 
   @Override protected void handle(PrintReceiver.PrintReceiverDto dto) {
+    UserInfoExample userInfoExample = new UserInfoExample();
+    userInfoExample.createCriteria().andMobileEqualTo("15618930895");
+    List<UserInfo> userInfos = userInfoMapper.selectByExample(userInfoExample);
+    if (null != userInfos) {
+      logger.info("user name:" + userInfos.get(0).getUserId());
+    }
     logger.info(dto.getContent());
   }
 

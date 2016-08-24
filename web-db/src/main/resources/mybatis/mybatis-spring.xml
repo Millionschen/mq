@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:component-scan base-package="com.zuihuibao.web.dao"/>
+
+  <context:property-placeholder
+      location="classpath*:config/**/*.properties"/>
+  <context:annotation-config/>
+
+  <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+      destroy-method="close">
+    <property name="driverClassName" value="${jdbc.driverClassName}"/>
+    <property name="url" value="${web.db.url}"/>
+    <property name="username" value="${web.db.username}"/>
+    <property name="password" value="${web.db.password}"/>
+    <!-- 初始化连接大小 -->
+    <property name="initialSize" value="${druid.pool.size.init}"/>
+    <!-- 连接池最大数量 -->
+    <property name="maxActive" value="${druid.pool.size.max}"/>
+    <!-- 连接池最小空闲 -->
+    <property name="minIdle" value="${druid.pool.size.min}"/>
+    <property name="filters" value="${druid.filters}"/>
+  </bean>
+
+  <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    <property name="typeAliasesPackage" value="com.zuihuibao.web.model"/>
+    <property name="mapperLocations" >
+      <array>
+        <value>classpath*:mapper/**/*.xml</value>
+      </array>
+    </property>
+  </bean>
+
+  <bean id="mapperScannerConfigurer"
+      class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
+    <property name="basePackage" value="com.zuihuibao.web.dao"/>
+  </bean>
+
+  <bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+  </bean>
+</beans>
