@@ -3,11 +3,8 @@ package com.zuihuibao.mq.dispatch;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.CaseFormat;
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
 import com.zuihuibao.mq.util.JsonParseHelper;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;

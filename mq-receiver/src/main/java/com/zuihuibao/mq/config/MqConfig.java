@@ -19,10 +19,7 @@ import org.springframework.amqp.rabbit.retry.MissingMessageIdAdvice;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.amqp.support.converter.SimpleMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.retry.interceptor.StatefulRetryOperationsInterceptor;
@@ -36,6 +33,7 @@ import org.springframework.retry.policy.MapRetryContextCache;
 @Configuration
 @ComponentScan(value = {"com.zuihuibao.mq.dispatch.receiver"})
 @ImportResource(locations = {"classpath*:mybatis/mybatis-spring.xml"})
+@EnableAspectJAutoProxy
 public class MqConfig {
 
   //rabbit mq 服务器配置
