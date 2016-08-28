@@ -5,9 +5,8 @@
 <generatorConfiguration>
 
   <!--指定特定数据库的jdbc驱动jar包的位置 -->
-  <classPathEntry
-      location="/Users/raynorchen/Library/Preferences/IntelliJIdea2016.2/jdbc-drivers/mysql-connector-java-5.1.35-bin.jar"/>
-
+  <!--<classPathEntry location="/Users/raynorchen/Library/Preferences/IntelliJIdea2016.2/jdbc-drivers/mysql-connector-java-5.1.35-bin.jar"/>-->
+  <classPathEntry location="C:\Users\millions\.IntelliJIdea2016.2\config\jdbc-drivers\mysql-connector-java-5.1.35-bin.jar"/>
   <context id="default" targetRuntime="MyBatis3">
 
 
@@ -19,7 +18,7 @@
 
     <!--jdbc的数据库连接 -->
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-        connectionURL="jdbc:mysql://127.0.0.1:65532/dbzhb?characterEncoding=utf-8" userId="zhb"
+        connectionURL="jdbc:mysql://192.168.0.108:65531/dbzhb?characterEncoding=utf-8" userId="zhb"
         password="zuihuibao2015">
     </jdbcConnection>
 
@@ -84,7 +83,7 @@
     </javaClientGenerator>
 
 
-    <table tableName="user_info" schema="dbzhb">
+    <table tableName="car_ins_system_config" schema="dbzhb">
 
       <!-- optional   , only for mybatis3 runtime
            自动生成的键值（identity,或者序列值）
@@ -104,7 +103,7 @@
             identity: 自增主键  If true, then the column is flagged as an identity column and the generated <selectKey> element will be placed after the insert (for an identity column). If false, then the generated <selectKey> will be placed before the insert (typically for a sequence).
 
       -->
-      <generatedKey column="user_id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+      <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
 
 
       <!-- optional.

@@ -27,15 +27,15 @@ import static com.alibaba.fastjson.util.TypeUtils.castToTimestamp;
  */
 public class JsonParseHelper {
     public static Optional<JSONObject> getJSONObject(JSONObject jsonObject, String key) {
-        return Optional.of(jsonObject.getJSONObject(key));
+        return Optional.ofNullable(jsonObject.getJSONObject(key));
     }
 
     public static Optional<JSONArray> getJSONArray(JSONObject jsonObject, String key) {
-        return Optional.of(jsonObject.getJSONArray(key));
+        return Optional.ofNullable(jsonObject.getJSONArray(key));
     }
 
     public static <T> Optional<T> getObject(JSONObject jsonObject, String key, Class<T> clazz) {
-        return Optional.of(jsonObject.getObject(key, clazz));
+        return Optional.ofNullable(jsonObject.getObject(key, clazz));
     }
 
     public static Optional<Boolean> getBoolean(JSONObject jsonObject, String key) {
@@ -59,12 +59,12 @@ public class JsonParseHelper {
 
     public static Optional<Integer> getInteger(JSONObject jsonObject, String key) {
 
-        return Optional.of(castToInt(jsonObject.getInteger(key)));
+        return Optional.ofNullable(castToInt(jsonObject.getInteger(key)));
     }
 
     public static Optional<Long> getLong(JSONObject jsonObject, String key) {
 
-        return Optional.of(castToLong(jsonObject.getLong(key)));
+        return Optional.ofNullable(castToLong(jsonObject.getLong(key)));
     }
 
     public static Optional<Float> getFloat(JSONObject jsonObject, String key) {
@@ -93,7 +93,7 @@ public class JsonParseHelper {
 
     public static Optional<Date> getDate(JSONObject jsonObject, String key) {
 
-        return Optional.of(castToDate(jsonObject.getDate(key)));
+        return Optional.ofNullable(castToDate(jsonObject.getDate(key)));
     }
 
     public static java.util.Optional<java.sql.Date> getSqlDate(JSONObject jsonObject, String key) {

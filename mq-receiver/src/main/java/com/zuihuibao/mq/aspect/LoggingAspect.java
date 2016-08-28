@@ -1,21 +1,18 @@
 package com.zuihuibao.mq.aspect;
 
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@Aspect
 public class LoggingAspect {
 
-    @Before("execution(* com.zuihuibao.mq.dispatch.receiver.*(..))")
-    public void logBefore() {
-        System.out.println("before advice called");
-    }
-
-    @After("execution(* com.zuihuibao.mq.dispatch.receiver.*(..))")
-    public void logAfter() {
-        System.out.println("after advice called");
-    }
+    private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
 }

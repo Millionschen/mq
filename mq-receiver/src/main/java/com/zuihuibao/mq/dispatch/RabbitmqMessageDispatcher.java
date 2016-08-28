@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.CaseFormat;
 import com.zuihuibao.mq.util.JsonParseHelper;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -54,7 +55,7 @@ public class RabbitmqMessageDispatcher implements MessageDispatcher, BeanFactory
             logger.info("get receiver error:" + msg);
             throw new AmqpRejectAndDontRequeueException(msg);
         } catch (Throwable e) {
-            logger.info(e.getMessage());
+            logger.info("exception message:" + e.getMessage() + " cause:" + e.getCause());
             throw e;
         }
     }

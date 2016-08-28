@@ -1,33 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="ERROR">
+<Configuration status="WARN" >
     <Appenders>
-
         <Console name="Console" target="SYSTEM_OUT">
-            <!--<PatternLayout pattern="%date %level [%thread] %logger.%method(%file:%line) - %msg%n"/>-->
-            <PatternLayout pattern="%date %level [%thread] %location - %msg%n"/>
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n" />
         </Console>
 
-        <RollingFile name="DRFA" fileName="@log4j.dir@/service.log"
-                     filePattern="@log4j.dir@/service.log.%date{yyyy-MM-dd}">
-            <PatternLayout pattern="%date %level [%thread] %location - %msg%n"/>
-            <TimeBasedTriggeringPolicy/>
-        </RollingFile>
+        <RollingRandomAccessFile name="infoLog" fileName="@log4j.dir@/app.log"
+                                 filePattern="@log4j.dir@/info.%d{yyyy-MM-dd}.log.gz" append="true">
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="warnLog" fileName="@log4j.dir@/warn.log"
+                                 filePattern="@log4j.dir@/warn.%d{yyyy-MM-dd}.log.gz" append="true">
+            <Filters>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="errorLog" fileName="@log4j.dir@/error.log"
+                                 filePattern="@log4j.dir@/error.%d{yyyy-MM-dd}.log.gz" append="true">
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+
     </Appenders>
 
     <Loggers>
-        <Root level="DEBUG">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="DRFA"/>
-        </Root>
+        <!-- 第三方的软件日志级别 -->
+         <logger name="org.springframework" level="info" additivity="true">
+            <AppenderRef ref="warnLog"/>
+            <AppenderRef ref="errorLog"/>
+        </logger>
 
-        <!-- 第三方jar日志级别 -->
-        <logger name="org.springframework" level="error"/>
-        <logger name="com.ibatis" level="DEBUG"/>
-        <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG"/>
-        <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>
-        <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG"/>
-        <logger name="sql.Connection" level="DEBUG"/>
-        <logger name="sql.Statement" level="DEBUG"/>
-        <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+        <logger name="java.sql.PreparedStatement" level="debug" additivity="true">
+            <AppenderRef ref="Console"/>
+        </logger>
+
+        <logger name="com.zuihuibao.web.dao" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+
+        <!-- 剩余其他的日志级别 -->
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="infoLog" />
+            <AppenderRef ref="Console" />
+        </Root>
     </Loggers>
 </Configuration>

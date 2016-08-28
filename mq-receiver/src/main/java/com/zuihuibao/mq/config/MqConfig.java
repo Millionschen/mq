@@ -33,6 +33,7 @@ import org.springframework.retry.policy.MapRetryContextCache;
 @Configuration
 @ComponentScan(value = {"com.zuihuibao.mq.dispatch.receiver"})
 @ImportResource(locations = {"classpath*:mybatis/mybatis-spring.xml"})
+@Import({AspectConfig.class, RestTemplateConfig.class, SpringConfig.class})
 @EnableAspectJAutoProxy
 public class MqConfig {
 
